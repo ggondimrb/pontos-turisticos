@@ -25,7 +25,7 @@ class PontoTuristico(models.Model):
         DocIdentificacao, on_delete=models.CASCADE, blank=True, null=True)
 
     @property
-    def descricao_completa2(self):
+    def descricao_completa(self):
         return f'{self.nome} - {self.descricao}'
 
     def __str__(self) -> str:

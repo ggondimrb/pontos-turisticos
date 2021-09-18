@@ -9,3 +9,6 @@ class AtracaoViewSet(ModelViewSet):
     serializer_class = AtracaoSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('nome', 'descricao')
+
+    def list(self, request, *args, **kwargs):
+        return super(AtracaoViewSet, self).list(request, *args, **kwargs)

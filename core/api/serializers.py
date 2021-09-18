@@ -15,15 +15,14 @@ class DocIdentficacaoSerializer(ModelSerializer):
 class PontoTuristicoSerializer(ModelSerializer):
     atracoes = AtracaoSerializer(many=True)
     endereco = EnderecoSerializer()
-    descricao_completa = SerializerMethodField()
     doc_identificacao = DocIdentficacaoSerializer()
 
     class Meta:
         model = PontoTuristico
         fields = ('id', 'nome', 'descricao', 'aprovado',
-                  'foto', 'atracoes', 'endereco', 'descricao_completa', 'descricao_completa2')
+                  'foto', 'atracoes', 'endereco', 'descricao_completa', 'doc_identificacao')
 
-        read_only_fields = ('comentarios, avaliacoes')
+        #read_only_fields = ('comentarios, avaliacoes')
 
     def cria_atracoes(self, atracoes, ponto):
         for atracao in atracoes:
@@ -51,6 +50,3 @@ class PontoTuristicoSerializer(ModelSerializer):
         ponto.save()
 
         return ponto
-
-    def get_descricao_completa(self, obj):
-        return f'{obj.nome} - {obj.descricao}'
